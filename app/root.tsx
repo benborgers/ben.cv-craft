@@ -4,13 +4,13 @@ import {
   Meta,
   Outlet,
   Scripts,
-  ScrollRestoration
+  ScrollRestoration,
 } from "remix";
-import type { MetaFunction } from "remix";
+import type { LinksFunction } from "remix";
 
-export const meta: MetaFunction = () => {
-  return { title: "New Remix App" };
-};
+export const links: LinksFunction = () => [
+  { rel: "icon", href: "https://emojicdn.elk.sh/🍱" },
+];
 
 export default function App() {
   return (

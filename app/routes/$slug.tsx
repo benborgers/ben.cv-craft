@@ -1,7 +1,11 @@
 import { json, LinksFunction, redirect, useLoaderData } from "remix";
-import type { LoaderFunction } from "remix";
+import type { LoaderFunction, MetaFunction } from "remix";
 import CraftBlock from "~/components/CraftBlock";
 import type { BlockType, BlockFragmentType } from "~/components/CraftBlock";
+
+export const meta: MetaFunction = ({ data }) => ({
+  title: pageTitle(data),
+});
 
 export const links: LinksFunction = () => [
   {
@@ -32,7 +36,7 @@ export const loader: LoaderFunction = async ({ params, context }) => {
 
 export default function Slug() {
   const page = useLoaderData();
-  const title = page.content.map((x: BlockFragmentType) => x.text).join("");
+  const title = pageTitle(page);
 
   return (
     <div>
@@ -43,3 +47,6 @@ export default function Slug() {
     </div>
   );
 }
+
+const pageTitle = (page: any) =>
+  page.content.map((x: BlockFragmentType) => x.text).join("");
