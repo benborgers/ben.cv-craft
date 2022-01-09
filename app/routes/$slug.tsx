@@ -1,4 +1,4 @@
-import { json, LinksFunction, useLoaderData } from "remix";
+import { json, LinksFunction, redirect, useLoaderData } from "remix";
 import type { LoaderFunction } from "remix";
 import CraftBlock from "~/components/CraftBlock";
 import type { BlockType, BlockFragmentType } from "~/components/CraftBlock";
@@ -10,9 +10,23 @@ export const links: LinksFunction = () => [
   },
 ];
 
+const BASE_DOC_ID = "b2ffdcaf-6cce-4687-863c-161e7436e34a";
+
 export const loader: LoaderFunction = async ({ params, context }) => {
-  const page = await context.env.KV.get(params.slug, { type: "json" });
+  const lowercaseSlug = params.slug?.toLowerCase();
+  if (params.slug && params.slug !== lowercaseSlug) {
+    throw redirect(`/${lowercaseSlug}`);
+  }
+
+  if (params.slug === BASE_DOC_ID) {
+    throw redirect("/");
+  }
+
+  const slug = params.slug || BASE_DOC_ID;
+
+  const page = await context.env.KV.get(slug, { type: "json" });
   if (!page) throw new Response("", { status: 404 });
+
   return json(page);
 };
 
