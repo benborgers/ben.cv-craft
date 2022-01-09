@@ -1,0 +1,10 @@
+{
+  "id": "ben.cv",
+  "name": "ben.cv",
+  "fileName": "ben.cv",
+  "description": "",
+  "author": "Ben Borgers",
+  "author-email": "ben@elk.sh",
+  "main": "index.html",
+  "api": "0.1.0"
+}

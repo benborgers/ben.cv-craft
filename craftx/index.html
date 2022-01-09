@@ -1,0 +1,54 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <script src="https://cdn.tailwindcss.com"></script>
+  </head>
+  <body class="antialiased text-gray-700 p-4">
+    <button
+      id="sync"
+      class="bg-orange-600 text-white font-semibold px-3 py-0.5 rounded-full"
+    >
+      Sync
+    </button>
+    <div id="message" class="hidden mt-4">
+      <p id="title"></p>
+      <p id="link" class="text-gray-400"></p>
+    </div>
+
+    <script>
+      document.querySelector("#sync").addEventListener("click", async (e) => {
+        const { data: currentPage } = await craft.dataApi.getCurrentPage();
+
+        // const markdown = craft.markdown.craftBlockToMarkdown(
+        //   currentPage.subblocks,
+        //   "common",
+        //   { tableSupported: true }
+        // );
+
+        fetch("http://127.0.0.1:8788/intake", {
+          method: "POST",
+          body: JSON.stringify(currentPage),
+        });
+
+        document.querySelector("#message").classList.remove("hidden");
+        document.querySelector(
+          "#link"
+        ).innerHTML = `ben.cv/${currentPage.id.toLowerCase()}`;
+
+        document.querySelector(
+          "#title"
+        ).innerHTML = `Synced ${currentPage.content
+          .map((x) => x.text)
+          .join("")}!`;
+
+        document.querySelector(
+          "#link"
+        ).innerHTML = `ben.cv/${currentPage.id.toLowerCase()}`;
+
+        setTimeout(() => {
+          document.querySelector("#message").classList.add("hidden");
+        }, 5000);
+      });
+    </script>
+  </body>
+</html>
