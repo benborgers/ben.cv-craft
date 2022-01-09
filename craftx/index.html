@@ -25,10 +25,14 @@
         //   { tableSupported: true }
         // );
 
-        fetch("http://127.0.0.1:8788/intake", {
-          method: "POST",
-          body: JSON.stringify(currentPage),
-        });
+        // Keep making a POST request to the local development API,
+        // to make returning to development easier.
+        for (const host of ["http://127.0.0.1:8788", "https://ben.cv"]) {
+          fetch(`${host}/intake`, {
+            method: "POST",
+            body: JSON.stringify(currentPage),
+          });
+        }
 
         document.querySelector("#message").classList.remove("hidden");
         document.querySelector(
