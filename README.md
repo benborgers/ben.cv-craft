@@ -1,6 +1,8 @@
-# Welcome to Remix!
+# ben.cv
 
-- [Remix Docs](https://remix.run/docs)
+[ben.cv](https://ben.cv) is kind of my digital garden. It’s written with [Remix](https://remix.run) and allows me to publish notes from [Craft](https://craft.do) via [their extension platform](https://developer.craft.do).
+
+I’ve written a [parser for Craft’s data format](app/components/CraftBlock.tsx) to render my notes on a page in React.
 
 ## Development
 
