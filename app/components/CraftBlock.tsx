@@ -6,11 +6,23 @@ const CraftBlock: React.FC<{ block: BlockType }> = ({ block }) => {
   // console.log("block", block);
 
   if (block.type === "textBlock") {
-    return (
-      <p>
-        <CraftText fragments={block.content} />
-      </p>
-    );
+    const text = <CraftText fragments={block.content} />;
+
+    // TODO: style bullets
+    if (block.listStyle.type === "bullet") {
+      return (
+        <div>
+          <span />
+          <p>{text}</p>
+        </div>
+      );
+    }
+
+    if (block.style.textStyle === "title") return <h2>{text}</h2>;
+    if (block.style.textStyle === "subtitle") return <h3>{text}</h3>;
+    if (block.style.textStyle === "heading") return <h4>{text}</h4>;
+
+    return <p>{text}</p>;
   }
 
   if (block.type === "imageBlock") {
@@ -110,6 +122,12 @@ type BlockType = {
   filename: string;
   code: string;
   language: string;
+  style: {
+    textStyle: string;
+  };
+  listStyle: {
+    type: string;
+  };
 };
 
 type BlockFragmentType = {
