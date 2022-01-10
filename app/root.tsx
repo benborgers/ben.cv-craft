@@ -9,7 +9,7 @@ import {
 import type { LinksFunction } from "remix";
 
 export const links: LinksFunction = () => [
-  { rel: "icon", href: "https://emojicdn.elk.sh/🍱" },
+  { rel: "icon", href: "https://emojicdn.elk.sh/🐙" },
 ];
 
 export default function App() {
