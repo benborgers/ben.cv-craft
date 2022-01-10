@@ -1,10 +1,15 @@
 import type { ActionFunction } from "remix";
 
 export const action: ActionFunction = async ({ request, context }) => {
-  const page = JSON.parse(await request.text());
-  const id = page.id.toLowerCase();
+  const body = JSON.parse(await request.text());
 
-  await context.env.KV.put(id, JSON.stringify(page));
+  if (body.key !== context.env.INTAKE_KEY) {
+    return new Response("", { status: 401 });
+  }
 
-  return null;
+  const id = body.page.id.toLowerCase();
+
+  await context.env.KV.put(id, JSON.stringify(body.page));
+
+  return new Response("", { status: 200 });
 };
