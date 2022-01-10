@@ -50,7 +50,7 @@ const CraftText: React.FC<{ fragments: Array<BlockFragmentType> }> = ({
 }) => {
   return (
     <>
-      {fragments.map((fragment) => {
+      {fragments.map((fragment, index) => {
         let output = <>{fragment.text}</>;
         if (fragment.isBold) {
           output = <strong>{output}</strong>;
@@ -92,7 +92,7 @@ const CraftText: React.FC<{ fragments: Array<BlockFragmentType> }> = ({
           );
         }
         return (
-          <React.Fragment key={JSON.stringify(fragment)}>
+          <React.Fragment key={JSON.stringify(fragment) + index}>
             {output}
           </React.Fragment>
         );
