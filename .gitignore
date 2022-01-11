@@ -7,3 +7,5 @@ node_modules
 .env
 .mf
 *.craftx
+
+/app/generated

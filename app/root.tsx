@@ -8,8 +8,10 @@ import {
 } from "remix";
 import type { LinksFunction } from "remix";
 
+import tailwind from "~/generated/tailwind.css";
 export const links: LinksFunction = () => [
   { rel: "icon", href: "https://emojicdn.elk.sh/🐙" },
+  { rel: "stylesheet", href: tailwind },
 ];
 
 export default function App() {

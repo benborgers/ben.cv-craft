@@ -4,12 +4,13 @@
   "description": "",
   "license": "",
   "scripts": {
-    "build": "cross-env NODE_ENV=production remix build",
+    "build": "cross-env NODE_ENV=production npm run build:css && remix build",
     "dev": "cross-env NODE_ENV=development run-p dev:*",
     "postinstall": "remix setup cloudflare-pages",
     "dev:remix": "remix watch",
     "dev:wrangler": "wrangler pages dev ./public --kv KV --binding $(cat .env)",
-    "start": "npm run dev:wrangler"
+    "dev:css": "tailwindcss -o app/generated/tailwind.css --watch",
+    "build:css": "npx tailwindcss -o app/generated/tailwind.css --minify"
   },
   "dependencies": {
     "@remix-run/cloudflare-pages": "^1.1.1",
@@ -18,7 +19,8 @@
     "katex": "^0.15.1",
     "react": "^17.0.2",
     "react-dom": "^17.0.2",
-    "remix": "^1.1.1"
+    "remix": "^1.1.1",
+    "tailwindcss": "^3.0.12"
   },
   "devDependencies": {
     "@cloudflare/workers-types": "^3.2.0",
