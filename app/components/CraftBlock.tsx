@@ -13,7 +13,7 @@ const CraftBlock: React.FC<{ block: BlockType }> = ({ block }) => {
       return (
         <div
           className="grid grid-cols-[max-content,1fr] gap-x-4 my-2"
-          style={{ marginLeft: block.indentationLevel + 1 + "rem" }}
+          style={{ marginLeft: 1.4 * (block.indentationLevel + 1) + "rem" }}
         >
           <span className="block h-1 w-1 bg-red-500 rounded-full mt-3" />
           <p className="my-0">{text}</p>
