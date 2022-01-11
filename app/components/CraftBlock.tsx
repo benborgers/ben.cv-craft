@@ -8,12 +8,15 @@ const CraftBlock: React.FC<{ block: BlockType }> = ({ block }) => {
   if (block.type === "textBlock") {
     const text = <CraftText fragments={block.content} />;
 
-    // TODO: style bullets
+    // TODO: make bullet color fit site theme
     if (block.listStyle.type === "bullet") {
       return (
-        <div>
-          <span />
-          <p>{text}</p>
+        <div
+          className="grid grid-cols-[max-content,1fr] gap-x-4 my-2"
+          style={{ marginLeft: block.indentationLevel + 1 + "rem" }}
+        >
+          <span className="block h-1 w-1 bg-red-500 rounded-full mt-3" />
+          <p className="my-0">{text}</p>
         </div>
       );
     }
@@ -117,6 +120,7 @@ type BlockType = {
   id: string;
   type: string;
   content: Array<BlockFragmentType>;
+  indentationLevel: number;
   url: string;
   previewUrl: string;
   filename: string;
