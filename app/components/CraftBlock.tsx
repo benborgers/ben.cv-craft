@@ -77,7 +77,7 @@ const CraftText: React.FC<{ fragments: Array<BlockFragmentType> }> = ({
           output = <code>{output}</code>;
         }
         if (fragment.highlightColor) {
-          output = <mark>{output}</mark>;
+          output = <mark className="bg-amber-200 px-0.5">{output}</mark>;
         }
         if (fragment.link?.type === "blockLink") {
           output = (
