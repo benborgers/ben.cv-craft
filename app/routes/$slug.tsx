@@ -41,9 +41,11 @@ export default function Slug() {
   return (
     <div>
       <h1>{title}</h1>
-      {page.subblocks.map((block: BlockType) => (
-        <CraftBlock key={block.id} block={block} />
-      ))}
+      <div className="prose">
+        {page.subblocks.map((block: BlockType) => (
+          <CraftBlock key={block.id} block={block} />
+        ))}
+      </div>
     </div>
   );
 }
